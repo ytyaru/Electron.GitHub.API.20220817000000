@@ -8,7 +8,18 @@ window.addEventListener('DOMContentLoaded', async(event) => {
     if (setting?.github?.repo) {
         console.log(setting?.github?.repo)
         document.getElementById('github-repo').value = setting.github.repo
-        await git.init(document.getElementById('github-repo').value)
+        const exists = await git.init(document.getElementById('github-repo').value)
+        if (!exists) {
+            await hub.createRepo({
+                name:setting.github.repo,
+                description:"リポジトリの説明",
+                //homepage:"",// URL
+                //private:false,// プライベートリポジトリ
+                //auto_init:false,
+                //gitignore_template:"",
+                //license_template:"mit",
+            })
+        }
     }
     /*
     if (setting?.github?.token) {

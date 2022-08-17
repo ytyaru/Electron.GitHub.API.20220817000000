@@ -18,10 +18,12 @@ class Git {
             //let res = await window.myApi.shell(`cd "${this.dir}/"; mkdir "${this.repo}"; cd "${this.repo}"; git init;`)
             // Initialized empty Git repository in /tmp/work/Electron.GitHub.API.20220816131521/dst/mytestrepo/.git/
             console.log(res.stdout)
+            console.log(`ローカルリポジトリを作成しました。`)
+            await this.#remoteAddOrigin()
         } else {
             console.log(`${this.dir}/${this.repo}/.git は既存のためgit initしません。`)
         }
-        await this.#remoteAddOrigin()
+        return exists
     }
     async #add() {
         await window.myApi.shell(`cd "${this.dir}/${this.repo}"; git add .;`)

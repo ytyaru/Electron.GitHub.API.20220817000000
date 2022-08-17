@@ -156,7 +156,13 @@ ipcMain.handle('request', async(event, params, onData=null, onEnd=null)=>{
     console.log(params)
     const request = net.request(params.params)
     //if (params.hasOwnProperty('body')) { request.write(params.body) }
-    if (params.hasOwnProperty('body')) { request.write(JSON.stringify(params.body)) }
+    //console.log(params)
+    //console.log(params.hasOwnProperty('params'))
+    //console.log(params.hasOwnProperty('body'))
+    //console.log(params.hasOwnProperty('method'))
+    //console.log(params.hasOwnProperty('url'))
+    //return 
+    if (params.hasOwnProperty('body')) { console.log(JSON.stringify(params.body)); request.write(JSON.stringify(params.body)); }
     console.log(request)
     /*
     let request = net.request({
